@@ -35,28 +35,38 @@ class DashboardMenu extends DefaultNavigationFactory
     }
     
     public function menuFormat($dataMenu) {
-//          echo $dataMenu->getQueryString(); exit;
-       
-        foreach ($dataMenu as $menxsu) {
-             var_Dump($menxsu);
-            Exit;
+        $menu = array();
+        foreach ($dataMenu as $opt) {
+            if (empty($opt['parent'])) {
+                $menu[] = array(
+                    'label' => $opt['label'],
+                    'uri' => 'http://www.google.com'
+                );
+            } else {
+                $menu[$opt['parent']]['pages'][] = array(
+                    'label' => $opt['label'],
+                    'uri' => 'http://www.icpna.edu.pe'
+                    
+                );
+            }
         }
-         $menu = array(
-               array(
-                   'label' => 'fgt website',
-                   'uri' => 'http://www.google.com',
-                   'pages' => array(
-                        array(
-                            'label' => 'Child #1',
-                            'uri' => 'http://www.icpna.edu.pe',
-                        ),
-                   ),
-               ),
-               array(
-                   'label' => 'internal',
-                   'uri' => 'http://www.francis-gonzales.info'
-               ),
-            );
+//         $menu1 = array(
+//               array(
+//                   'label' => 'fgt website',
+//                   'uri' => 'http://www.google.com',
+//                   'pages' => array(
+//                        array(
+//                            'label' => 'Child #1',
+//                            'uri' => 'http://www.icpna.edu.pe',
+//                        ),
+//                   ),
+//               ),
+//               array(
+//                   'label' => 'internal',
+//                   'uri' => 'http://www.francis-gonzales.info'
+//               ),
+//            );
+//        var_dump($menu, $menu1);Exit;
          return $menu;
     }
 }

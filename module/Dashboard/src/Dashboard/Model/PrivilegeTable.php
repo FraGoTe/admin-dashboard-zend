@@ -50,9 +50,10 @@ class PrivilegeTable
                     ->join(
                         array('u' => 'user'),
                         'u.role_id = r.id',
-                        array('*')
+                        array('full_name')
                     )
-                    ->where(array('u.id' => $userId));
+                    ->where(array('u.id' => $userId))
+                    ->order('m.id');
         $stmt = $sql->prepareStatementForSqlObject($select); 
         $results = $stmt ->execute(); 
         return $results;
