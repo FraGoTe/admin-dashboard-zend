@@ -22,6 +22,7 @@ class LoginController extends AbstractActionController
 {
     public function indexAction()
     {
+        $this->layout('layout/login');
         $auth = new AuthenticationService();
         $viewmodel = new ViewModel();
         $form = new LoginForm();

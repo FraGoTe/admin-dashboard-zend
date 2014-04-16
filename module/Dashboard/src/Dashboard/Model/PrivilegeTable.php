@@ -35,25 +35,26 @@ class PrivilegeTable
     {
         $sql = new Sql($this->tableGateway->getAdapter());
         $select = $sql
-                  ->select()  
+                  ->select()
                   ->from('privilege')
                   ->join(
                         array('m' => 'menu'),
                         'm.id = privilege.menu_id',
-                        array('label')
+                        array('*')
                     )
                   ->join(
                         array('r' => 'role'),
                         'r.id = privilege.role_id',
-                        array('id')
+                        array('*')
                     )
                     ->join(
                         array('u' => 'user'),
                         'u.role_id = r.id',
-                        array('id')
+                        array('*')
                     )
                     ->where(array('u.id' => $userId));
-        $resultSet = $this->getTableGateway()->selectWith($select);
-        return $resultSet;
+        $stmt = $sql->prepareStatementForSqlObject($select); 
+        $results = $stmt ->execute(); 
+        return $results;
     }
 }
