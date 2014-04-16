@@ -36,15 +36,15 @@ class PrivilegeTable
         $sql = new Sql($this->tableGateway->getAdapter());
         $select = $sql
                   ->select()
-                  ->from('privilege')
+                  ->from(array('p' => 'privilege'))
                   ->join(
                         array('m' => 'menu'),
-                        'm.id = privilege.menu_id',
+                        'm.id = p.menu_id',
                         array('*')
                     )
                   ->join(
                         array('r' => 'role'),
-                        'r.id = privilege.role_id',
+                        'r.id = p.role_id',
                         array('*')
                     )
                     ->join(
