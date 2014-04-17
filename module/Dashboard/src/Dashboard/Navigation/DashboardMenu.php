@@ -10,6 +10,7 @@ namespace Dashboard\Navigation;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Navigation\Service\DefaultNavigationFactory;
 use Zend\Authentication\AuthenticationService;
+use Dashboard\Helper\RouteHelper;
 
 class DashboardMenu extends DefaultNavigationFactory
 {
@@ -34,39 +35,28 @@ class DashboardMenu extends DefaultNavigationFactory
         return $this->pages;
     }
     
-    public function menuFormat($dataMenu) {
+    public function menuFormat($dataMenu) 
+    {
         $menu = array();
+        $routHelper = new RouteHelper();
         foreach ($dataMenu as $opt) {
             if (empty($opt['parent'])) {
                 $menu[] = array(
                     'label' => $opt['label'],
-                    'uri' => 'http://www.google.com'
+                    'uri' => $routHelper->formUrl($opt['module'], $opt['controller'], $opt['action'])
                 );
             } else {
                 $menu[$opt['parent']]['pages'][] = array(
                     'label' => $opt['label'],
-                    'uri' => 'http://www.icpna.edu.pe'
-                    
+                    'uri' => $routHelper->formUrl($opt['module'], $opt['controller'], $opt['action'])
                 );
             }
         }
-//         $menu1 = array(
-//               array(
-//                   'label' => 'fgt website',
-//                   'uri' => 'http://www.google.com',
-//                   'pages' => array(
-//                        array(
-//                            'label' => 'Child #1',
-//                            'uri' => 'http://www.icpna.edu.pe',
-//                        ),
-//                   ),
-//               ),
-//               array(
-//                   'label' => 'internal',
-//                   'uri' => 'http://www.francis-gonzales.info'
-//               ),
-//            );
-//        var_dump($menu, $menu1);Exit;
+        //Logout
+        $menu[] = array(
+            'label' => 'Logout',
+            'uri' => '/dashboard/logout'
+        );
          return $menu;
     }
 }

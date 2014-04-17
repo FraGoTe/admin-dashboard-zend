@@ -136,7 +136,9 @@ return array(
     'controller_plugins' => array(
         'invokables' => array(
             'Authentication' => 'Dashboard\Plugin\Authentication',
+            'RouteHelper' => 'Dashboard\Helper\RouteHelper',
             'Privileges' => 'Dashboard\Plugin\Privileges',
+            
         )
     ),
 );
