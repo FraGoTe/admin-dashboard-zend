@@ -41,11 +41,11 @@ class DashboardMenu extends DefaultNavigationFactory
         $routHelper = new RouteHelper();
         foreach ($dataMenu as $opt) {
             if (empty($opt['parent'])) {
-                $menu[] = array(
+                $menu[$opt['menu_id']] = array(
                     'label' => $opt['label'],
                     'uri' => $routHelper->formUrl($opt['module'], $opt['controller'], $opt['action'])
                 );
-            } else {
+            }else {
                 $menu[$opt['parent']]['pages'][] = array(
                     'label' => $opt['label'],
                     'uri' => $routHelper->formUrl($opt['module'], $opt['controller'], $opt['action'])
@@ -57,6 +57,7 @@ class DashboardMenu extends DefaultNavigationFactory
             'label' => 'Logout',
             'uri' => '/dashboard/logout'
         );
-         return $menu;
+        
+        return $menu;
     }
 }
