@@ -29,7 +29,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         $application = $e->getApplication();
         $sm = $application->getServiceManager();
         $sharedManager = $eventManager->getSharedManager();
-        
         //Setting layouts
         $sharedManager->attach('Zend\Mvc\Controller\AbstractController', 'dispatch', function($e) {
             $controller      = $e->getTarget();
@@ -44,7 +43,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         
         $router = $sm->get('router');
         $request = $sm->get('request');
-
         $matchedRoute = $router->match($request);
         if (null !== $matchedRoute) {
             //Check the Authentication in every controller different with Login
