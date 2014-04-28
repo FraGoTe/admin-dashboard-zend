@@ -1,23 +1,21 @@
 <?php
 
 /**
- * Privilege Model
+ * Role Model
  * @autor Francis Gonzales <fgonzalestello91@gmail.com>
  */
 
 namespace Dashboard\Model;
 
-class Privilege
+class Role
 {
     public $id;
-    public $roleId;
-    public $menuId;
+    public $name;
     
     public function exchangeArray($data)
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;
-        $this->roleId = (isset($data['role_id'])) ? $data['role_id'] : null;
-        $this->menuId = (isset($data['menu_id'])) ? $data['menu_id'] : null;
+        $this->name = (isset($data['name'])) ? $data['name'] : null;
     }
  
     public function getArrayCopy()

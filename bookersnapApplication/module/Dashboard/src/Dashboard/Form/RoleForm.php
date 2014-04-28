@@ -1,41 +1,33 @@
 <?php
 /**
- * Description of LoginForm
+ * Description of RoleForm
  * @autor Francis Gonzales <fgonzalestello91@gmail.com>
  */
 namespace Dashboard\Form;
 
 use Zend\Form\Form;
 
-class LoginForm extends Form
+class RoleForm extends Form
 {
     public function __construct($name = null) {
-        parent::__construct('login');
+        parent::__construct('role');
         $this->setAttribute('method', 'post');
         $this->add(array(
-            'name' => 'username',
+            'name' => 'name',
             'attributes' => array(
                 'type'  => 'text',
             ),
             'options' => array(
-                'label' => 'Usuario',
-            ),
-        ));
-        $this->add(array(
-            'name' => 'password',
-            'attributes' => array(
-                'type'  => 'password',
-            ),
-            'options' => array(
-                'label' => 'Clave',
+                'label' => 'Rol',
             ),
         ));
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',
-                'value' => 'Entrar',
+                'value' => 'Add',
                 'id' => 'submitbutton',
+                'class' => 'btn btn-success'
             ),
         ));
     }

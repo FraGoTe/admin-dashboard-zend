@@ -17,6 +17,10 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Dashboard\Model\Privilege;
 use Dashboard\Model\PrivilegeTable;
+use Dashboard\Model\Role;
+use Dashboard\Model\RoleTable;
+use Dashboard\Model\User;
+use Dashboard\Model\UserTable;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 {
@@ -91,7 +95,31 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                         $rsPrototype->setArrayObjectPrototype(new Privilege());
                         $tableGateway = new TableGateway('privilege', $adapter, null, $rsPrototype);
                         return $tableGateway;
-                },
+                    },
+                    'Dashboard\Model\UserTable' => function($sl){
+                        $gateway = $sl->get('UserTableGateway');
+                        $table = new UserTable($gateway);
+                        return $table;
+                    },
+                    'UserTableGateway' => function($sl) {
+                        $adapter = $sl->get('Zend\Db\Adapter\Adapter');
+                        $rsPrototype = new ResultSet();
+                        $rsPrototype->setArrayObjectPrototype(new User());
+                        $tableGateway = new TableGateway('user', $adapter, null, $rsPrototype);
+                        return $tableGateway;
+                    },
+                    'Dashboard\Model\RoleTable' => function($sl){
+                        $gateway = $sl->get('RoleTableGateway');
+                        $table = new RoleTable($gateway);
+                        return $table;
+                    },
+                    'RoleTableGateway' => function($sl) {
+                        $adapter = $sl->get('Zend\Db\Adapter\Adapter');
+                        $rsPrototype = new ResultSet();
+                        $rsPrototype->setArrayObjectPrototype(new Role());
+                        $tableGateway = new TableGateway('role', $adapter, null, $rsPrototype);
+                        return $tableGateway;
+                    },
                 )
             );
             
