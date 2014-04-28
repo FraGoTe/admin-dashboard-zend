@@ -17,7 +17,7 @@ class DashboardMenu extends DefaultNavigationFactory
     protected function getPages(ServiceLocatorInterface $serviceLocator) 
     {
         $menu = array();
-        //if (null == $this->pages) {
+        if (null == $this->pages) {
             $auth = new AuthenticationService();
             $mvcEvent = $serviceLocator->get('Application')->getMvcEvent();
             $privilegeMenu = $serviceLocator->get('Dashboard\Model\PrivilegeTable');
@@ -30,7 +30,7 @@ class DashboardMenu extends DefaultNavigationFactory
             $router = $mvcEvent->getRouter();
             $pages = $this->getPagesFromConfig($menu);
             $this->pages = $this->injectComponents($pages, $routeMatch, $router);
-        //}
+        }
         
         return $this->pages;
     }

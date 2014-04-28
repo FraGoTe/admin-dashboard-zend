@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Description of Privileges
- *
- * @author fragote
+ * Privilege Table
+ * @autor Francis Gonzales <fgonzalestello91@gmail.com>
  */
+
 namespace Dashboard\Model;
 
 use Zend\Db\TableGateway\TableGateway;

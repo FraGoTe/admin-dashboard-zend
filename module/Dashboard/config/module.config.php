@@ -83,6 +83,28 @@ return array(
                     ),
                 ),
             ),
+            'dash_role' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/dashboard/role',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'role',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
+            'dash_user' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/dashboard/user',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'user',
+                        'action' => 'index',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -108,6 +130,8 @@ return array(
         'invokables' => array(
             'Dashboard\Controller\Index' => 'Dashboard\Controller\IndexController',
             'Dashboard\Controller\Login' => 'Dashboard\Controller\LoginController',
+            'Dashboard\Controller\User' => 'Dashboard\Controller\UserController',
+            'Dashboard\Controller\Role' => 'Dashboard\Controller\RoleController',
         ),
     ),
     'view_manager' => array(
