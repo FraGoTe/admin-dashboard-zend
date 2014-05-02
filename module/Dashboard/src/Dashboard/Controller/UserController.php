@@ -16,26 +16,29 @@ class UserController extends AbstractActionController
     public function indexAction()
     {
         $viewmodel = new ViewModel();
-        $form = new UserForm();
-//        $request = $this->getRequest();
-//        $serviceLocator = $this->getServiceLocator();
-//        $form->get('submit');
-//        $message = ""; //Message
-//        
-//        if ($request->isPost()) {
-//            // @TODO addfilters
-//            //$form->setInputFilter($filters);
-//            $form->setData($request->getPost());
-//            if ($form->isValid()) {
-//                $data = $form->getData();
-//                $userTable = $serviceLocator->get('Dashboard\Model\UserTable');
-//                unset($data['submit']);
-//                
-//                if ($rs) {
-//                    $form = new UserForm();
-//                }
-//            }
-//        }
+        $sl = $this->getServiceLocator();
+        $roleTable = $sl->get('Dashboard/Model/RoleTable');
+        $form = new UserForm($roleTable);
+        $request = $this->getRequest();
+        $serviceLocator = $this->getServiceLocator();
+        $form->get('submit');
+        $message = ""; //Message
+        
+        if ($request->isPost()) {
+            // @TODO addfilters
+            //$form->setInputFilter($filters);
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $userTable = $serviceLocator->get('Dashboard\Model\UserTable');
+                unset($data['submit']);
+                
+                $rs = $userTable->addUser($data);
+                if ($rs) {
+                    $form = new UserForm($roleTable);
+                }
+            }
+        }
         $viewmodel->form = $form;
         $viewmodel->message = $message;
         return $viewmodel;

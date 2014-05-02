@@ -45,7 +45,7 @@ class LoginController extends AbstractActionController
                                   'user', //User table
                                   'username', //field
                                   'password',  // field
-                                  'SHA1(?)' //custom functions
+                                  'sha1(?)' //custom functions
                               );
                 
                 $authAdapter->setIdentity($data['username'])

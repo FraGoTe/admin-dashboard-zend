@@ -13,6 +13,37 @@ class Privilege
     public $roleId;
     public $menuId;
     
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getRoleId()
+    {
+        return $this->roleId;
+    }
+
+    public function getMenuId()
+    {
+        return $this->menuId;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setRoleId($roleId)
+    {
+        $this->roleId = $roleId;
+    }
+
+    public function setMenuId($menuId)
+    {
+        $this->menuId = $menuId;
+    }
+
+        
     public function exchangeArray($data)
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;

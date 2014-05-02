@@ -6,17 +6,21 @@
 namespace Dashboard\Form;
 
 use Zend\Form\Form;
-use Dashboard\Model\User;
+use Dashboard\Model\Role;
 
 class UserForm extends Form
 {
-    public function __construct($name = null) {
+    public function __construct($roleTable) {
         parent::__construct('user');
-        $this->setAttribute('method', 'post');
         
-        $sl = new User();
-        var_dump($sl);
-        exit;
+        $roles = $roleTable->fetchAll();
+        $selRol = array();
+        foreach($roles as $role) {
+            $id = $role->getId();
+            $selRol[$id] = $role->getName();
+        }
+        
+        $this->setAttribute('method', 'post');
         $this->add(array(
             'name' => 'username',
             'attributes' => array(
@@ -38,7 +42,7 @@ class UserForm extends Form
         $this->add(array(
             'name' => 'email',
             'attributes' => array(
-                'type'  => 'text',
+                'type'  => 'email',
             ),
             'options' => array(
                 'label' => 'Email',
@@ -46,22 +50,17 @@ class UserForm extends Form
         ));
         $this->add(array(
             'type' => 'Zend\Form\Element\Select',
-            'name' => 'roleId',
+            'name' => 'role_id',
             'options' => array(
                 'label' => 'Role',
-                'value_options' => array(
-                    '0' => 'French',
-                    '1' => 'English',
-                    '2' => 'Japanese',
-                    '3' => 'Chinese',
-                    ),
+                'value_options' => $selRol,
              ),
         ));
         $this->add(array(
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',
-                'value' => 'Entrar',
+                'value' => 'Add',
                 'id' => 'submitbutton',
             ),
         ));

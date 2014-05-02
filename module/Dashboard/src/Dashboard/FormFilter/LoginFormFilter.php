@@ -26,8 +26,7 @@ class LoginFormFilter extends InputFilter
         
         $input = new \Zend\InputFilter\Input('password');
         // Validadores
-        $v = new \Zend\Validator\StringLength(array('min'=>3,'max'=>50));
-        $v->setMin(3);
+        $v = new \Zend\Validator\StringLength(array('min'=>1,'max'=>50));
         $v->setMessage('La clave ingresada es inválida', \Zend\Validator\StringLength::TOO_SHORT);
         $input->setRequired(true);
         $input->getValidatorChain()->attach($v);

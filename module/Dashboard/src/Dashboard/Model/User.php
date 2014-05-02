@@ -16,6 +16,67 @@ class User
     public $email;
     public $roleId;
     
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getRoleId()
+    {
+        return $this->roleId;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function setRoleId($roleId)
+    {
+        $this->roleId = $roleId;
+    }
+
+        
     public function exchangeArray($data)
     {
         $this->id = (isset($data['id'])) ? $data['id'] : null;

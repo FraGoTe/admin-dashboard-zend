@@ -30,4 +30,11 @@ class UserTable
         $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
+    
+    public function addUser($params)
+    {
+        $params['password'] = sha1($params['password']);
+        $rs = $this->tableGateway->insert($params);
+        return $rs;
+    }
 }
