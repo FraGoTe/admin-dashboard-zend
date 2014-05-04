@@ -2,8 +2,9 @@
 return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
-        'Application', //Website
-        'Dashboard', //Dashboard Admin
+        'Application', // Website
+        'Dashboard', // Dashboard Admin
+        'ZfcDatagrid', // DataGrid Module
         'ZendDeveloperTools', // This is a tool to debug
     ),
 

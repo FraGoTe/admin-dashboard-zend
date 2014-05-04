@@ -105,6 +105,20 @@ return array(
                     ),
                 ),
             ),
+            'dash_user_edit' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/dashboard/user/edit/id[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'user',
+                        'action' => 'edit',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
