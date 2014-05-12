@@ -86,4 +86,28 @@ class UserTable
         $rs = $this->tableGateway->insert($params);
         return $rs;
     }
+    
+    /**
+     * This function allows to edit Users
+     * @param array $set
+     * @param array $where
+     * @return boolean
+     */
+    public function editUser($set, $where)
+    {
+        if (!empty($set['password'])) {
+            $set['password'] = sha1($set['password']);
+        } else {
+            unset($set['password']);
+        }
+        $rs = $this->tableGateway->update($set, $where);
+        return $rs;
+    }
+    
+    public function deleteUser($userId)
+    {
+        $where = array('id' => $userId);
+        $rs = $this->tableGateway->delete($where);
+        return $rs;
+    }
 }

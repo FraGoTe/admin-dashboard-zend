@@ -99,7 +99,7 @@ class UserController extends AbstractActionController
         $delBtn = new Column\Action\Button();
         $delBtn->setLabel('Delete');
         $delBtn->setAttribute('class', 'btn btn-danger');
-        $delBtn->setAttribute('href', '/dashboard/user/edit/id/' . $delBtn->getRowIdPlaceholder());
+        $delBtn->setAttribute('href', '/dashboard/user/delete/id/' . $delBtn->getRowIdPlaceholder());
         
         $col = new Column\Action();
         $col->addAction($editBtn);
@@ -112,24 +112,42 @@ class UserController extends AbstractActionController
     public function editAction()
     {
         $userId = $this->params('id');
-        $request = $this->request();
+        $request = $this->getRequest();
         $viewmodel = new ViewModel();
         $sl = $this->getServiceLocator();
         $roleTable = $sl->get('Dashboard\Model\RoleTable');
         $userTable = $sl->get('Dashboard\Model\UserTable');
         $form = new UserForm($roleTable);
         
-//        if ($request->isPost()) {
-//            
-//        }
-        
-        $userData = $userTable->getUser($userId);
-        foreach ($userData as $user) {
-            $form->get('username')->setValue($user['username']);
-            $form->get('email')->setValue($user['email']);
-            $form->get('role_id')->setValue($user['role_id']);
+        if ($request->isPost()) {
+            // @TODO addfilters
+            //$form->setInputFilter($filters);
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $data = $form->getData();
+                unset($data['submit']);
+                $dataId = array('id' => $userId);
+                $userTable->editUser($data, $dataId);
+            }
+        } else {
+            $userData = $userTable->getUser($userId);
+            foreach ($userData as $user) {
+                $form->get('username')->setValue($user['username']);
+                $form->get('email')->setValue($user['email']);
+                $form->get('role_id')->setValue($user['role_id']);
+            }
         }
+       
         $viewmodel->form = $form;
         return $viewmodel;
+    }
+    
+    public function deleteAction()
+    {
+        $sl = $this->getServiceLocator();
+        $userId = $this->params('id');
+        $userTable = $sl->get('Dashboard\Model\UserTable');
+        $userTable->deleteUser($userId);
+        $this->redirect()->toRoute('dash_user_list');
     }
 }

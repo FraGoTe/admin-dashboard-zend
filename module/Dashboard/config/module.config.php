@@ -105,6 +105,20 @@ return array(
                     ),
                 ),
             ),
+            'dash_user_list' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/dashboard/user/list/id[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'user',
+                        'action' => 'list',
+                    ),
+                ),
+            ),
             'dash_user_edit' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -116,6 +130,20 @@ return array(
                         '__NAMESPACE__' => 'Dashboard\Controller',
                         'controller' => 'user',
                         'action' => 'edit',
+                    ),
+                ),
+            ),
+            'dash_user_del' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/dashboard/user/delete/id[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'user',
+                        'action' => 'delete',
                     ),
                 ),
             ),
