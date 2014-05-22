@@ -147,6 +147,48 @@ return array(
                     ),
                 ),
             ),
+            'dash_role_list' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/dashboard/role/list/id[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'role',
+                        'action' => 'list',
+                    ),
+                ),
+            ),
+            'dash_role_edit' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/dashboard/role/edit/id[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'role',
+                        'action' => 'edit',
+                    ),
+                ),
+            ),
+            'dash_role_del' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/dashboard/role/delete/id[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Dashboard\Controller',
+                        'controller' => 'role',
+                        'action' => 'delete',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
