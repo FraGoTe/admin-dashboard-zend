@@ -18,6 +18,11 @@ use Zend\Session\SessionManager;
 
 class LoginController extends AbstractActionController
 {
+    public function __construct($dbAdapter)
+    {
+        $this->dbAdapter = $dbAdapter;
+    }
+    
     public function indexAction()
     {
         $this->layout('layout/login');
@@ -38,8 +43,7 @@ class LoginController extends AbstractActionController
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $data = $form->getData();
-                $sm = $this->getServiceLocator();
-                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                $dbAdapter = $this->dbAdapter;
                 $authAdapter = new AuthAdapter(
                                   $dbAdapter, //Adapter
                                   'user', //User table

@@ -15,6 +15,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Mvc\Controller\ControllerManager;
 use Dashboard\Model\Privilege;
 use Dashboard\Model\PrivilegeTable;
 use Dashboard\Model\Role;

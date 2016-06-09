@@ -14,28 +14,28 @@ use Dashboard\Helper\RouteHelper;
 
 class DashboardMenu extends DefaultNavigationFactory
 {
-    protected function getPages(ServiceLocatorInterface $serviceLocator) 
+    protected function getPages(\Interop\Container\ContainerInterface  $serviceLocator)
     {
         $menu = array();
         if (null == $this->pages) {
             $auth = new AuthenticationService();
             $mvcEvent = $serviceLocator->get('Application')->getMvcEvent();
             $privilegeMenu = $serviceLocator->get('Dashboard\Model\PrivilegeTable');
-            
+
             $identity = $auth->getIdentity();
             $dataMenu = $privilegeMenu->getMenuByUser($identity->id);
             $menu = $this->menuFormat($dataMenu);
-            
+
             $routeMatch = $mvcEvent->getRouteMatch();
             $router = $mvcEvent->getRouter();
             $pages = $this->getPagesFromConfig($menu);
             $this->pages = $this->injectComponents($pages, $routeMatch, $router);
         }
-        
+
         return $this->pages;
     }
-    
-    public function menuFormat($dataMenu) 
+
+    public function menuFormat($dataMenu)
     {
         $menu = array();
         $routHelper = new RouteHelper();
@@ -57,7 +57,7 @@ class DashboardMenu extends DefaultNavigationFactory
             'label' => 'Logout',
             'uri' => '/dashboard/logout'
         );
-        
+
         return $menu;
     }
 }

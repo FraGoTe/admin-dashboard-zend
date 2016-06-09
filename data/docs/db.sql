@@ -3,8 +3,8 @@
 SET NAMES utf8;
 SET time_zone = '+00:00';
 
-CREATE DATABASE `bookersnap` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `bookersnap`;
+CREATE DATABASE `admin` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `admin`;
 
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
@@ -26,7 +26,7 @@ CREATE TABLE `privilege` (
   `menu_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `role`;
@@ -35,7 +35,7 @@ CREATE TABLE `role` (
   `name` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `user`;
@@ -49,7 +49,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 -- 2014-08-31 22:03:19

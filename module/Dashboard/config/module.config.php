@@ -55,8 +55,7 @@ return array(
                 'options' => array(
                     'route' => '/dashboard/login',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Dashboard\Controller',
-                        'controller' => 'login',
+                        'controller' => 'Dashboard\Controller\Login',
                         'action' => 'index',
                     ),
                 ),
@@ -66,8 +65,7 @@ return array(
                 'options' => array(
                     'route' => '/dashboard/logout',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Dashboard\Controller',
-                        'controller' => 'login',
+                        'controller' => 'Dashboard\Controller\Login',
                         'action' => 'logout',
                     ),
                 ),
@@ -213,10 +211,13 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Dashboard\Controller\Index' => 'Dashboard\Controller\IndexController',
-            'Dashboard\Controller\Login' => 'Dashboard\Controller\LoginController',
+           // 'Dashboard\Controller\Login' => 'Dashboard\Controller\LoginController',
             'Dashboard\Controller\User' => 'Dashboard\Controller\UserController',
             'Dashboard\Controller\Role' => 'Dashboard\Controller\RoleController',
         ),
+        'factories' => array(
+           'Dashboard\Controller\Login' => 'Dashboard\Factory\LoginFactory'
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
