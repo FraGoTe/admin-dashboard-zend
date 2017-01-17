@@ -1,7 +1,7 @@
 Dashboard Module
 =================
 
-This is a simple Admin Dashborad Module using Zend Framework 2
+This is a simple Admin Dashborad Module using Zend Framework 2.5
 
 Installation
 ------------
